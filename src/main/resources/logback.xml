@@ -19,7 +19,7 @@
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
     <property name="log.path" value="/data0/logs/java/duoduodai.fin.fdd"/>
-    
+
     <!-- 文件滚动输出 level为 INFO 日志 -->
     <appender name="file-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 日志级别过滤器 -->
@@ -65,11 +65,11 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <!-- 1.先按日期存日志，日期变了，将前一天的日志文件名重命名为xxx%日期%索引，新的日志仍然是error.log -->
-        <file>${location}/error.log</file>
+        <file>${log.path}/error.log</file>
         <!-- 循环政策：基于时间创建日志文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 旧日志文件名格式:按天 -->
-            <FileNamePattern>${location}/%d{yyyy-MM-dd}/error.%i.log</FileNamePattern>
+            <FileNamePattern>${log.path}/%d{yyyy-MM-dd}/error.%i.log</FileNamePattern>
             <!-- 每产生一个日志文件，该日志文件的最大保存时间：30天-->
             <MaxHistory>30</MaxHistory>
             <!-- 2.如果日期没有变化，但是当前日志文件的大小超过1kb时，对当前日志进行分割 重名名 -->
@@ -85,7 +85,6 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-
 
     <!-- 文件滚动输出 level为root level以上的所有级别日志 -->
     <appender name="file—server" class="ch.qos.logback.core.rolling.RollingFileAppender">

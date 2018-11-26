@@ -17,7 +17,14 @@ public class SpringController {
     @RequestMapping("ling")
     @ResponseBody
     public String hellow(){
-        logger.debug("LINGZI");
+        logger.debug("debug111");
+        logger.info("info");
+        logger.error("error");
+        test2q22();
         return "lingzi";
+    }
+    
+    public void  test2q22(){
+        System.out.println(2);
     }
 }
