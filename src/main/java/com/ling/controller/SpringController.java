@@ -20,11 +20,16 @@ public class SpringController {
         logger.debug("debug111");
         logger.info("info");
         logger.error("error");
-        test2q22();
         return "lingzi";
     }
     
-    public void  test2q22(){
-        System.out.println(2);
+    @RequestMapping("video")
+    public String  toUplaod(){
+        return "video";
+    }
+
+    @RequestMapping("video2")
+    public String toUplaod2() {
+        return "video2";
     }
 }

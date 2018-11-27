@@ -1,3 +1,4 @@
+/*
 package com.ling.quartz;
 
 import org.springframework.scheduling.annotation.Scheduled;
@@ -6,9 +7,11 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * Created by LingZi on 2018/11/21.
- */
+ *//*
+
 @Component
 public class MyJob {
     
@@ -23,3 +26,4 @@ public class MyJob {
         System.out.println("cron表达式方式"+new SimpleDateFormat("yyyy-MM-dd HH:mmm:ss").format(new Date()));
     }
 }
+*/
