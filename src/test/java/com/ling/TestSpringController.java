@@ -21,7 +21,6 @@ public class TestSpringController {
     
     @Test
     public void  test1(){
-        String hellow = springController.hellow();
-        System.out.println(hellow);
+       
     }
 }

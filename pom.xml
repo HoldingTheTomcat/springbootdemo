@@ -78,10 +78,12 @@
 
         <!--热部署，即开发模式-->
         
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+        -->
 
         <!-- activeMQ相关 start -->
         <dependency>
@@ -111,6 +113,18 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--Aop相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!--json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
     </dependencies>
 
     <build>
