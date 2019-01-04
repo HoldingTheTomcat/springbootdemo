@@ -185,8 +185,9 @@ public class WebLogAspect {
         return declaringTypeName;
     }
     //测试分支合并
-    // 模拟冲突master模拟冲突testMerge
+    // 模拟冲突testMerge模拟冲突testMerge
     //测试提交2
-    //模拟冲突master
     //测试提交33
+    // //模拟摘樱桃1
+    //模拟摘樱桃2
 }
