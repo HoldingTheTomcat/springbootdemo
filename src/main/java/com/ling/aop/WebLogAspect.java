@@ -184,4 +184,5 @@ public class WebLogAspect {
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
         return declaringTypeName;
     }
+    //测试分支合并
 }
