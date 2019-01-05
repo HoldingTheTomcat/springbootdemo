@@ -184,4 +184,6 @@ public class WebLogAspect {
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
         return declaringTypeName;
     }
+    
+    //模拟提交不push
 }
