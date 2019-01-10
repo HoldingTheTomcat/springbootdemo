@@ -182,20 +182,9 @@ public class WebLogAspect {
             System.out.println("确实一样长1");
             System.out.println("确实一样长2");
             System.out.println("stash1");
-            System.out.println("stash2");
-            System.out.println("stash3");
-            System.out.println("stash4");
-            System.out.println("stash5");
-            System.out.println("stash6");
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
         return declaringTypeName;
     }
-    //测试分支合并
-    // 模拟冲突testMerge模拟冲突testMerge
-    //测试提交2
-    //测试提交33
-    // //模拟摘樱桃1
-    //模拟摘樱桃2
-    // 模拟模拟合并不提交
+   
 }
