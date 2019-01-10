@@ -188,6 +188,7 @@ public class WebLogAspect {
             System.out.println("stash5");
             System.out.println("stash6");
             System.out.println("stash7");
+            System.out.println("stash8");
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
         return declaringTypeName;
