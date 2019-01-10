@@ -181,6 +181,7 @@ public class WebLogAspect {
         if (args.length == parameters.length) {
             System.out.println("确实一样长1");
             System.out.println("确实一样长2");
+            System.out.println("测试版本库");
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
         return declaringTypeName;
