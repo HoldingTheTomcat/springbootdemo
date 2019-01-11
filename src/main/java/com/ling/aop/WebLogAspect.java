@@ -179,6 +179,7 @@ public class WebLogAspect {
             System.out.println("修改不一样的地方1");
             System.out.println("不一样的地方2");
             System.out.println("模拟冲突");
+            System.out.println("确实冲突1");
             System.out.println("确实冲突2");
             
         }
@@ -187,6 +188,7 @@ public class WebLogAspect {
             System.out.println("确实一样长1");
             System.out.println("一样长2");
             System.out.println("一样长3");
+            System.out.println("一样长4");
            
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
