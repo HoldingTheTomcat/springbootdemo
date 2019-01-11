@@ -189,6 +189,7 @@ public class WebLogAspect {
             System.out.println("一样长2");
             System.out.println("一样长3");
             System.out.println("一样长4");
+            System.out.println("一样长5");
            
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
