@@ -177,24 +177,15 @@ public class WebLogAspect {
         for (Parameter parameter : parameters) {
             String parameterName = parameter.getName();
             System.out.println("修改不一样的地方1");
-            System.out.println("修改不一样的地方2");
-            System.out.println("修改不一样的地方3");
+            
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
             System.out.println("确实一样长1");
-            System.out.println("确实一样长2");
-            System.out.println("stash1");
-            System.out.println("stash2");
-            System.out.println("stash3");
-            System.out.println("stash4");
-            System.out.println("stash5");
-            System.out.println("stash6");
-            System.out.println("stash7");
-            System.out.println("stash9");
-            System.out.println("stash13");
+           
         }
         String declaringTypeName = point.getSignature().getDeclaringTypeName();
+        System.out.println("stash6");
         return declaringTypeName;
     }
    
