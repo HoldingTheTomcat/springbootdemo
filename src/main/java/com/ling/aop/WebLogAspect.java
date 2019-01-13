@@ -178,19 +178,6 @@ public class WebLogAspect {
             String parameterName = parameter.getName();
             System.out.println("不一样的地方13");
             System.out.println("不一样的地方141");
-            System.out.println("不一样的地方16");
-            System.out.println("测试1");
-            System.out.println("测试2");
-            System.out.println("测试3");
-            System.out.println("测试4");
-            System.out.println("测试merge");
-            System.out.println("测试merge1");
-            System.out.println("测试merge2");
-            System.out.println("测试merge3");
-
-           
-           
-           
             
         }
         Object[] args = point.getArgs();
