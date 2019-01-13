@@ -178,6 +178,7 @@ public class WebLogAspect {
             String parameterName = parameter.getName();
             System.out.println("master:push1");
             
+            System.out.println("testMerge:我也改");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
