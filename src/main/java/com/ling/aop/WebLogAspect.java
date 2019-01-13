@@ -179,6 +179,7 @@ public class WebLogAspect {
             System.out.println("master:优先修改");
             
             System.out.println("testMerge:我也改");
+            System.out.println("testMerge:我继续增加");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
