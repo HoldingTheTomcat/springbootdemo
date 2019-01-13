@@ -178,7 +178,7 @@ public class WebLogAspect {
             String parameterName = parameter.getName();
             System.out.println("master:push1");
             System.out.println("master:push21");
-            System.out.println("master:push32");
+            System.out.println("testMerge:push32");
             
         }
         Object[] args = point.getArgs();
