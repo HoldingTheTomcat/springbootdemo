@@ -179,6 +179,9 @@ public class WebLogAspect {
             System.out.println("不一样的地方13");
             System.out.println("测试合并3");
             
+            System.out.println("测试合并1");
+            System.out.println("测试合并2");
+           
             
         }
         Object[] args = point.getArgs();
