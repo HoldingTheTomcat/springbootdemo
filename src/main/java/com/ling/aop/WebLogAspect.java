@@ -177,13 +177,8 @@ public class WebLogAspect {
         for (Parameter parameter : parameters) {
             String parameterName = parameter.getName();
             System.out.println("不一样的地方13");
-            System.out.println("不一样的地方141");
-            System.out.println("不一样的地方143");
-            System.out.println("不一样的地方144");
-            System.out.println("不一样的地方142");
-            System.out.println("不一样的地方147");
-            System.out.println("不一样的地方142");
-            System.out.println("不一样的地方146");
+            System.out.println("测试合并1");
+           
             
         }
         Object[] args = point.getArgs();
