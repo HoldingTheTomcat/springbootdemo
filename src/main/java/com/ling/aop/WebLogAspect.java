@@ -179,6 +179,7 @@ public class WebLogAspect {
             System.out.println("master:push1");
             System.out.println("master:push21");
             System.out.println("master:push31");
+            System.out.println("master:push32");
             
         }
         Object[] args = point.getArgs();
