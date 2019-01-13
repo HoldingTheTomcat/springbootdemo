@@ -180,6 +180,7 @@ public class WebLogAspect {
             System.out.println("master:push21");
             System.out.println("master:push31");
             System.out.println("master:push32");
+            System.out.println("testMerge:push1");
             
         }
         Object[] args = point.getArgs();
