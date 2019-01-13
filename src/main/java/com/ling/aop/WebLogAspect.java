@@ -176,8 +176,9 @@ public class WebLogAspect {
         Parameter[] parameters = method.getParameters();
         for (Parameter parameter : parameters) {
             String parameterName = parameter.getName();
-            System.out.println("master:push1");
+            System.out.println("master:push2");
             System.out.println("testMerge:push1");
+            System.out.println("testMerge:push2");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
