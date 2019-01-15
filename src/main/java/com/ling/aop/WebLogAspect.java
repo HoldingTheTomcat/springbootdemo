@@ -181,6 +181,7 @@ public class WebLogAspect {
             System.out.println("全testMerge：push1");
             System.out.println("全testMerge：push2");
             System.out.println("全testMerge：push3");
+            System.out.println("全testMerge：push4");
             
         }
         Object[] args = point.getArgs();
