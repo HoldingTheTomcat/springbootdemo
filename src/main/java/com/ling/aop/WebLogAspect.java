@@ -180,6 +180,11 @@ public class WebLogAspect {
             System.out.println("测试2");
             System.out.println("测试32");
             System.out.println("测试31");
+            System.out.println("master:push12");
+            System.out.println("master:push21");
+            System.out.println("master:push31");
+            System.out.println("master:push321");
+            System.out.println("master:push331");
             
         }
         Object[] args = point.getArgs();
