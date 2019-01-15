@@ -177,9 +177,6 @@ public class WebLogAspect {
         for (Parameter parameter : parameters) {
             String parameterName = parameter.getName();
             System.out.println("我是分割线------------------");
-            System.out.println("master:变1");
-            System.out.println("testMerge:变1");
-            System.out.println("testMerge:变2");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
