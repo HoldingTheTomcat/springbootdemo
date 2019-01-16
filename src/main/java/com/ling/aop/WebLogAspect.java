@@ -182,6 +182,7 @@ public class WebLogAspect {
             System.out.println("testMerge-3");
             System.out.println("testMerge-4");
             System.out.println("master-1");
+            System.out.println("master-2");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
