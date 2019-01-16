@@ -181,6 +181,7 @@ public class WebLogAspect {
             System.out.println("testMerge:提：2-5:testMerge");
             System.out.println("testMerge:提：3-5:testMerge");
             System.out.println("testMerge:新：1");
+            System.out.println("testMerge:新：2");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
