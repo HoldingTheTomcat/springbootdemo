@@ -186,6 +186,7 @@ public class WebLogAspect {
             System.out.println("master:新：2");
             System.out.println("master:走：1");
             System.out.println("master:走：2");
+            System.out.println("master:走：3");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
