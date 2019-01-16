@@ -180,6 +180,7 @@ public class WebLogAspect {
             System.out.println("testMerge:时光穿梭机：1");
             System.out.println("testMerge:时光穿梭机：2");
             System.out.println("master:时光穿梭机：1");
+            System.out.println("master:时光穿梭机：2");
         }
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
