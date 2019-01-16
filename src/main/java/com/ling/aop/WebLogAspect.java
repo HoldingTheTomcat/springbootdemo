@@ -183,7 +183,7 @@ public class WebLogAspect {
         Object[] args = point.getArgs();
         if (args.length == parameters.length) {
             System.out.println("确实一样长1");
-            System.out.println("testMerge:确实一样长2");
+            System.out.println("testMerge:确实一样长2-1");
            
            
         }
