@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,11 +26,14 @@ public class SpringController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("test")
+    @GetMapping("test")
     public String toUplaod4(Student student,String classRoom)throws Exception {
-        System.out.println("jin来了a255e2eee22");
+      /*  System.out.println("jin来了a255e2eee22");
         student.setAge(12);
-        studentService.insertStudent(student);
+        studentService.insertStudent(student);*/
+        logger.debug("debug");
+        logger.info("info1");
+        logger.error("error1");
         return "/jsp/editSelect";
     }
 
