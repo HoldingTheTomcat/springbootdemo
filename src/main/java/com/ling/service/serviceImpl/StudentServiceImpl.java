@@ -29,11 +29,15 @@ public class StudentServiceImpl implements StudentService {
         studentTestMapper.updateByPrimaryKeySelective(student);
     }*/
 
+    /**
+     * 如果不是默认数据源对应的事务管理器，那么必须指定其对应的事务管理器，不然事务注解不起作用
+     * @param student
+     */
     @Override
-    @Transactional
+    @Transactional(transactionManager = "test2TransactionManager")
     public void insertStudent(Student student) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         studentTestMapper.insert(student);
-        // int i = 1 / 0;
+        int i = 1 / 0;
     }
 }

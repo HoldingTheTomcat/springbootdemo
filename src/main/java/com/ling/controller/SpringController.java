@@ -26,7 +26,7 @@ public class SpringController {
     public Student toUplaod4(Student student, String classRoom)throws Exception {
         student = new Student();
         student.setDogName("lisi");
-        student.setAge(10);
+        student.setAge(11);
         studentService.insertStudent(student);
         return student;
     }
