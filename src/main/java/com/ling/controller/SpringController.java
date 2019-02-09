@@ -27,14 +27,12 @@ public class SpringController {
     private StudentService studentService;
 
     @GetMapping("test")
-    public String toUplaod4(Student student,String classRoom)throws Exception {
-      /*  System.out.println("jin来了a255e2eee22");
-        student.setAge(12);
-        studentService.insertStudent(student);*/
-        logger.debug("debug");
-        logger.info("info1");
-        logger.error("error1");
-        return "/jsp/editSelect";
+    public Student toUplaod4()throws Exception {
+        Student student = new Student();
+        student.setDogName("lisi");
+        student.setAge(10);
+        studentService.insertStudent(student);
+        return student;
     }
 
     @RequestMapping("test2")
