@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-
 /**
  * Created by LingZi on 2018/11/21.
  */
@@ -25,7 +23,7 @@ public class SpringController {
     private StudentService studentService;
 
     @GetMapping("test")
-    public Student toUplaod4(Student student,String classRoom)throws Exception {
+    public Student toUplaod4(Student student, String classRoom)throws Exception {
         student = new Student();
         student.setDogName("lisi");
         student.setAge(10);

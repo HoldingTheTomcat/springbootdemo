@@ -124,4 +124,7 @@
     <logger name="com.duoduodai.dao.mapping" level="DEBUG">
         <appender-ref ref="consoleLog"/>
     </logger>
+    <logger name="com.duoduodai.dao.mapper" level="DEBUG">
+        <appender-ref ref="consoleLog"/>
+    </logger>
 </configuration>

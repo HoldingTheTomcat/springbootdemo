@@ -2,6 +2,7 @@ package com.ling.service.serviceImpl;
 
 import com.ling.dao.entity.Student;
 import com.ling.dao.mapper.test.StudentTestMapper;
+import com.ling.dao.mapper.test2.StudentTest2Mapper;
 import com.ling.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentTestMapper studentTestMapper;
+    private StudentTest2Mapper studentTestMapper;
     
-    @Override
+   /* @Override
     public void updateStudent(Student student) {
         studentTestMapper.updateByPrimaryKeySelective(student);
-    }
+    }*/
 
     @Override
     @Transactional
