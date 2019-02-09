@@ -1,4 +1,4 @@
-package com.ling.dao.mapper;
+package com.ling.dao.mapper.test;
 
 import com.ling.dao.entity.Student;
 import com.ling.dao.entity.StudentExample;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface StudentMapper {
+public interface StudentTestMapper {
     int countByExample(StudentExample example);
 
     int deleteByExample(StudentExample example);

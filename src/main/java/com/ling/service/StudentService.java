@@ -9,7 +9,6 @@ import com.ling.dao.entity.Student;
  */
 public interface StudentService {
 
-    void updateStudent(Student student);
 
     void insertStudent(Student student);
 }
