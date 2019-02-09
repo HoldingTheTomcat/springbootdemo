@@ -4,11 +4,20 @@ public class Student {
     /** */
     private Integer id;
 
-    /** */
-    private String name;
+    /** 年龄*/
+    private Integer age;
+
+    /** 姓名*/
+    private String dogName;
 
     /** */
-    private Integer age;
+    private String needBook;
+
+    /** */
+    private Integer needmoney;
+
+    /** */
+    private String teacher;
 
     public Integer getId() {
         return id;
@@ -16,14 +25,6 @@ public class Student {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
     }
 
     public Integer getAge() {
@@ -34,5 +35,35 @@ public class Student {
         this.age = age;
     }
 
-   
+    public String getDogName() {
+        return dogName;
+    }
+
+    public void setDogName(String dogName) {
+        this.dogName = dogName == null ? null : dogName.trim();
+    }
+
+    public String getNeedBook() {
+        return needBook;
+    }
+
+    public void setNeedBook(String needBook) {
+        this.needBook = needBook == null ? null : needBook.trim();
+    }
+
+    public Integer getNeedmoney() {
+        return needmoney;
+    }
+
+    public void setNeedmoney(Integer needmoney) {
+        this.needmoney = needmoney;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher == null ? null : teacher.trim();
+    }
 }

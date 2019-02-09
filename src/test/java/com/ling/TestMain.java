@@ -17,7 +17,6 @@ public class TestMain {
     
     public static void main(String[] args) {
         Student student = new Student();
-        student.setName("lisi");
         student.setAge(10);
         Class<TestMain> testMainClass = TestMain.class;
         Method[] methods = testMainClass.getMethods();
