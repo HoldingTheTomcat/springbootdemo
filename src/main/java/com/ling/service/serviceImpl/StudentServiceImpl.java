@@ -38,6 +38,6 @@ public class StudentServiceImpl implements StudentService {
     public void insertStudent(Student student) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         studentTestMapper.insert(student);
-        int i = 1 / 0;
+        // int i = 1 / 0;
     }
 }

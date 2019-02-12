@@ -24,6 +24,8 @@ public class SpringController {
 
     @GetMapping("test")
     public Student toUplaod4(Student student, String classRoom)throws Exception {
+        Thread thread = Thread.currentThread();
+        logger.info("线程id:{}", thread.getId());
         student = new Student();
         student.setDogName("lisi");
         student.setAge(11);
