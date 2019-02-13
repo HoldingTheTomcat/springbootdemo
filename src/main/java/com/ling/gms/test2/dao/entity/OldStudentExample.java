@@ -1,16 +1,16 @@
-package com.ling.dao.entity;
+package com.ling.gms.test2.dao.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentExample {
+public class OldStudentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public StudentExample() {
+    public OldStudentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -4,21 +4,19 @@ import com.ling.datasource.datasource.DynamicDataSource;
 import com.ling.datasource.datasource.DynamicDataSourceContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
+import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.validation.DataBinder;
 
 import javax.sql.DataSource;
@@ -29,7 +27,8 @@ import java.util.Map;
 /**
  * 负责把数据源注册到springBoot里面
  * 功能描述：动态数据源注册 启动动态数据源请在启动类中（如Start）
- * 在这个类被加载的时候做一些操作，如何保证这个类被加载的时候做一些操作呢，需要实现接口BeanFactoryPostProcessor
+ * 添加 @Import(DynamicDataSourceRegister3.class)
+ * 在这个类被加载的时候做一些操作，如何保证这个类被加载的时候做一些操作呢，需要实现接口ImportBeanDefinitionRegistrar
  */
 /*
 @EnableTransactionManagement
@@ -37,11 +36,9 @@ import java.util.Map;
 @MapperScan("com.appleyk")  
 这里先不加
 */
-@Component
-@Configuration
-public class DynamicDataSourceRegister implements BeanFactoryPostProcessor, EnvironmentAware {
+public class DynamicDataSourceRegister3 implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceRegister.class);
+	private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceRegister3.class);
 
 	//数据源转换器
 	private ConversionService conversionService = new DefaultConversionService();
@@ -59,8 +56,13 @@ public class DynamicDataSourceRegister implements BeanFactoryPostProcessor, Envi
 
 	private String  defaultKey;
 
+	/**
+	 * 把数据库连接池初始化、实例化
+	 * @param importingClassMetadata
+	 * @param registry
+	 */
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		//设置目标数据源
 		Map<Object, Object> targetDataSources = new HashMap<>();
 		// 将主数据源添加到更多数据源中
@@ -74,21 +76,26 @@ public class DynamicDataSourceRegister implements BeanFactoryPostProcessor, Envi
 		}
 
 		/**
-		 * 创建GenericBeanDefinition用来实例化DynamicDataSource
+         * 创建GenericBeanDefinition用来实例化DynamicDataSource
 		 * DynamicDataSource它是有属性的（父接口AbstractRoutingDataSource中），这些属性，我们也需要让它初始化
 		 */
-
-		DynamicDataSource dynamicDataSource = new DynamicDataSource();
-		dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
-		dynamicDataSource.setTargetDataSources(targetDataSources);
-		dynamicDataSource.afterPropertiesSet();
+		
+		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
+		//实例化DynamicDataSource
+		beanDefinition.setBeanClass(DynamicDataSource.class);
+		beanDefinition.setSynthetic(true);
+		
+		//获得DynamicDataSource的属性
+		MutablePropertyValues mpv = beanDefinition.getPropertyValues();
+		//属性初始化， -- defaultTargetDataSource、targetDataSources都是接口AbstractRoutingDataSource的属性名
+		mpv.addPropertyValue("defaultTargetDataSource", defaultDataSource);
+		mpv.addPropertyValue("targetDataSources", targetDataSources);
 		
 		//注册到spring中，交给管理 --实现ImportBeanDefinitionRegistrar，目的就是把beanDefinition注册到spring容器中
-		DefaultListableBeanFactory factory = (DefaultListableBeanFactory) beanFactory;
-		factory.registerSingleton("dataSource", dynamicDataSource);
+		registry.registerBeanDefinition("dataSource", beanDefinition);
+		
 		logger.info("动态数据源注册成功,从数据源个数 == {}", customDataSources.size());
 	}
-
 
 
 	/**
@@ -209,17 +216,16 @@ public class DynamicDataSourceRegister implements BeanFactoryPostProcessor, Envi
 	}
 
 
-	/*@Bean
-	public PlatformTransactionManager masterTransactionManager() {
-		logger.debug("masterTransactionManager=========配置主数据库的事务");
-		return new DataSourceTransactionManager(defaultDataSource);
-	}
+	// @Bean
+	// public PlatformTransactionManager masterTransactionManager() {
+	// 	logger.info("masterTransactionManager=========配置主数据库的事务");
+	// 	return new DataSourceTransactionManager(defaultDataSource);
+	// }
+    //
+	// @Bean
+	// public PlatformTransactionManager slaveTransactionManager() {
+	// 	logger.info("slaveTransactionManager=========配置从数据库的事务");
+	// 	return new DataSourceTransactionManager(customDataSources.get("slave"));
+	// }
 
-	@Bean
-	public PlatformTransactionManager slaveTransactionManager() {
-		logger.debug("slaveTransactionManager=========配置从数据库的事务");
-		return new DataSourceTransactionManager(customDataSources.get("slave"));
-	}*/
-
-	
 }

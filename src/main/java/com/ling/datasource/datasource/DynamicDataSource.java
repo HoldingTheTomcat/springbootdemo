@@ -22,13 +22,12 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	 */
 	
 	@Override  
-    protected Object determineCurrentLookupKey() {  
+    protected Object determineCurrentLookupKey() {
     	  if(DynamicDataSourceContextHolder.getDataSourceType()==null){
-			  logger.debug("数据源为:====master");
+			  logger.info("数据源为:====master");
     	  }else{
-    	  	  logger.debug("数据源为:===={}", DynamicDataSourceContextHolder.getDataSourceType());
+    	  	  logger.info("数据源为:===={}", DynamicDataSourceContextHolder.getDataSourceType());
     	  }
-    	  
           return DynamicDataSourceContextHolder.getDataSourceType();  
     }  
   

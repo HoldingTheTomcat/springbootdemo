@@ -32,11 +32,13 @@ public class WebLogAspect {
 
     //定义一个切点，格式就是按切点对应的匹配格式
     // @Pointcut("execution(* *.saying(..))")
-    @Pointcut("execution(* com.ling.controller..*.*(..))")
+    // @Pointcut("execution(* com.ling.controller..*.*(..))")
+    @Pointcut("execution(* com..controller..*.*(..))")
     public void controllerPoint() {
     }//controllerPoint就是切点名，名字任意 
 
-    @Pointcut("execution(* com.ling.service.serviceImpl..*.*(..))")
+    // @Pointcut("execution(* com.ling.service.serviceImpl..*.*(..))")
+    @Pointcut("execution(* com..service.serviceImpl..*.*(..))")
     public void servicePoint() {
     }//
 

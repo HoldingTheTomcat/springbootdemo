@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * 当前线程数据源：建立映射关系，建立当前用户操作线程和数据源标识的映射
- * @author yukun24@126.com
- * @blob   http://blog.csdn.net/appleyk
- * @date   2018年2月27日-上午11:36:27
  */
   
 public class DynamicDataSourceContextHolder {  

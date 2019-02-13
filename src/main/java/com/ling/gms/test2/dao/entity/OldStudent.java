@@ -1,6 +1,6 @@
-package com.ling.dao.entity;
+package com.ling.gms.test2.dao.entity;
 
-public class Student {
+public class OldStudent {
     /** */
     private Integer id;
 
