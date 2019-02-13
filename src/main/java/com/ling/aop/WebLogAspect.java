@@ -17,6 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.UUID;
 
 /**
  * @author TianHeLing
@@ -74,11 +75,25 @@ public class WebLogAspect {
 
         }
         Class<?> returnType = method.getReturnType();
-        logger.info("controller调用开始 ->ip:{}  ->请求地址：{} ->调用类：{} ->方法：{} ->参数：{} ->返回值类型：{}", ip, url,className, methodName, param.toString(), JSON.toJSONString(returnType));
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        logger.info("controller调用开始 ->{}", uuid);
+        logger.info("ip:{}", ip);
+        logger.info("请求地址：{}", url);
+        logger.info("调用类：{}", className);
+        logger.info("方法：{}", methodName);
+        logger.info("参数：{}", param.toString());
+        logger.info("返回值类型：{}", returnType);
+        logger.info("方法：{} {}({})", returnType, methodName,param.toString());
+        // logger.info("controller调用开始 ->ip:{}  ->请求地址：{} ->调用类：{} ->方法：{} ->参数：{} ->返回值类型：{}", ip, url,className, methodName, param.toString(), JSON.toJSONString(returnType));
         Object result = point.proceed();//放行原方法
-        logger.info("controller调用结束 ->ip:{}  ->请求地址：{} ->调用类：{} ->方法：{}->参数：{} ->执行结果：{}", ip, url,className, methodName, param.toString(), JSON.toJSONString(result));
-        // logger.info("环绕通知退出方法");
+        // logger.info("controller调用结束 ->ip:{}  ->请求地址：{} ->调用类：{} ->方法：{}->参数：{} ->执行结果：{}", ip, url,className, methodName, param.toString(), JSON.toJSONString(result));
         //这里也可以做插入日志记录相关操作，如果是成功才插入，那么service可以根据业务逻辑抛出异常，那么proceed后面就不会执行
+        String requestString = "";
+        if (result != null){
+            requestString = JSON.toJSONString(result);
+        }
+        logger.info("controller调用结束:{} ->结果：{}", uuid, requestString);
+        
         return result;
     }
 
@@ -107,11 +122,25 @@ public class WebLogAspect {
             }
 
         }
-        Class<?> returnType= method.getReturnType();
-        logger.info("service调用开始 ->ip:{} ->调用类：{} ->方法：{} ->参数：{} ->返回值类型：{}", ip, className, methodName, param.toString(),JSON.toJSONString(returnType));
+        Class<?> returnType = method.getReturnType();
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        logger.info("service调用开始 ->{}", uuid);
+        logger.info("ip:{}", ip);
+        logger.info("调用类：{}", className);
+        logger.info("方法：{}", methodName);
+        logger.info("参数：{}", param.toString());
+        logger.info("返回值类型：{}", returnType);
+        logger.info("方法：{} {}({})", returnType, methodName, param.toString());
+     
+        // logger.info("service调用开始 ->ip:{} ->调用类：{} ->方法：{} ->参数：{} ->返回值类型：{}", ip, className, methodName, param.toString(),JSON.toJSONString(returnType));
         Object result = point.proceed();//放行原方法
-        logger.info("service调用结束 ->ip:{} ->调用类：{} ->方法：{}->参数：{} ->执行结果：{}", ip, className, methodName, param.toString(), JSON.toJSONString(result));
+        // logger.info("service调用结束 ->ip:{} ->调用类：{} ->方法：{}->参数：{} ->执行结果：{}", ip, className, methodName, param.toString(), JSON.toJSONString(result));
         // logger.info("环绕通知退出方法");
+        String requestString = "";
+        if (result != null) {
+            requestString = JSON.toJSONString(result);
+        }
+        logger.info("service调用结束:{} ->结果：{}", uuid, requestString);
 
         return result;
     }
