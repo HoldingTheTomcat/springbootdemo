@@ -147,13 +147,13 @@ public class WebLogAspect {
     }
     private void paramType2(Object[] args, String[] parameterNames) {
         for (int i = 0; i < parameterNames.length; i++) {
-            logger.info("参数: {}:{}", parameterNames[i], JSON.toJSONString(args[i]));
+            logger.info("参数: {}:{}", parameterNames[i], JSON.toJSONString(args[i],SerializerFeature.WriteMapNullValue));
         }
     } 
     private void paramType3(Object[] args, String[] parameterNames) {
         StringBuilder param = new StringBuilder();
         for (int i = 0; i < parameterNames.length; i++) {
-            param.append(parameterNames[i] + ":" + JSON.toJSONString(args[i]));
+            param.append(parameterNames[i] + ":" + JSON.toJSONString(args[i], SerializerFeature.WriteMapNullValue));
             if (i < parameterNames.length - 1) {
                 param.append(",");
             }
