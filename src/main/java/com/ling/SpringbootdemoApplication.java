@@ -7,9 +7,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication  
-@MapperScan("com.ling.dao.mapper")
 @EnableScheduling
-
+@MapperScan("com.ling.gms.test2.dao.mapper")
+@EnableTransactionManagement
 public class SpringbootdemoApplication {
 
 	public static void main(String[] args) {

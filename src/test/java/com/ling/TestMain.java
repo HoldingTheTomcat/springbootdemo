@@ -1,12 +1,5 @@
 package com.ling;
 
-import com.alibaba.fastjson.JSON;
-import com.ling.controller.SpringController;
-import com.ling.dao.entity.Student;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-
 /**
  * @author TianHeLing
  * @Description
@@ -16,18 +9,7 @@ public class TestMain {
 
     
     public static void main(String[] args) {
-        Student student = new Student();
-        student.setName("lisi");
-        student.setAge(10);
-        Class<TestMain> testMainClass = TestMain.class;
-        Method[] methods = testMainClass.getMethods();
-        for (Method method : methods) {
-            if (method.getName().equals("getName")){
-                System.out.println(method.getReturnType());
-            }
-        }
-        System.out.println(JSON.toJSONString(student));
-
+       
     }
 
     public static String changeCharset(String str, String oldCharset, String newCharset) {
