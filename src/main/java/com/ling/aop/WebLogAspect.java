@@ -214,27 +214,5 @@ public class WebLogAspect {
         return point.getSignature().getName();
     }
 
-
-    private String getReturnType(JoinPoint point) {
-        //从切面织入点处通过反射机制获取织入点处的方法（被拦截的方法）
-        MethodSignature signature = (MethodSignature)point.getSignature();
-        Method method = signature.getMethod();
-        Parameter[] parameters = method.getParameters();
-        for (Parameter parameter : parameters) {
-            String parameterName = parameter.getName();
-            System.out.println("----------我是分割线------------------");
-            System.out.println("master:1");
-        }
-        Object[] args = point.getArgs();
-        if (args.length == parameters.length) {
-            System.out.println("确实一样长1");
-            System.out.println("testMerge:确实一样长2-1");
-           
-           
-        }
-        String declaringTypeName = point.getSignature().getDeclaringTypeName();
-        System.out.println("stash6");
-        return declaringTypeName;
-    }
    
 }
