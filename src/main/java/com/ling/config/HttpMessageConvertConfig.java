@@ -24,8 +24,6 @@ public class HttpMessageConvertConfig {
         //对json数据进行格式化
         config.setSerializerFeatures(SerializerFeature.PrettyFormat, SerializerFeature.WriteDateUseDateFormat);
         converter.setFastJsonConfig(config);
-        //测试单个文件提交-2
-        //测试单个文件提交-4
         return new HttpMessageConverters(converter);
     }
     
