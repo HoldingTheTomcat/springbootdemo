@@ -211,6 +211,7 @@ public class WebLogAspect {
      */
 
     private String getMethodName(JoinPoint point) {
+        //测试单个文件提交-1
         return point.getSignature().getName();
     }
 
