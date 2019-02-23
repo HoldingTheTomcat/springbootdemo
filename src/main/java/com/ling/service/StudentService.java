@@ -2,6 +2,8 @@ package com.ling.service;
 
 import com.ling.dao.entity.Student;
 
+import java.util.List;
+
 /**
  * @author TianHeLing
  * @Description
@@ -12,4 +14,6 @@ public interface StudentService {
     void updateStudent(Student student);
 
     void insertStudent(Student student);
+
+    List<Student> getStudentList();
 }

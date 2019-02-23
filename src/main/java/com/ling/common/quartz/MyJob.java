@@ -1,5 +1,5 @@
 /*
-package com.ling.quartz;
+package com.ling.common.quartz;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
