@@ -1,15 +1,13 @@
-package com.ling.aop;
+package com.ling.common.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.ling.util.IpUtils;
+import com.ling.common.util.IpUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -24,9 +22,9 @@ import java.lang.reflect.Parameter;
  * @date 2018/12/1
  */
 
-@Aspect
-@Component
-public class WebLogAspect {
+// @Aspect
+// @Component
+public class WebLogAspect2 {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 

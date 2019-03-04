@@ -1,5 +1,15 @@
 package com.ling;
 
+import com.alibaba.fastjson.JSON;
+import com.ling.dao.entity.Student;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+
+import java.lang.reflect.Method;
+
 /**
  * @author TianHeLing
  * @Description
@@ -7,10 +17,25 @@ package com.ling;
  */
 public class TestMain {
 
+    private static Logger logger = LoggerFactory.getLogger(TestMain.class);
+     
+ 
     
     public static void main(String[] args) {
-       
+        Student student = new Student();
+        student.setAge(10);
+        Class<TestMain> testMainClass = TestMain.class;
+        Method[] methods = testMainClass.getMethods();
+        for (Method method : methods) {
+            if (method.getName().equals("getName")){
+                System.out.println(method.getReturnType());
+            }
+        }
+        System.out.println(JSON.toJSONString(student));
+
     }
+    
+   
 
     public static String changeCharset(String str, String oldCharset, String newCharset) {
         try {

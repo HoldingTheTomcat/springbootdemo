@@ -1,4 +1,4 @@
-package com.ling.util;
+package com.ling.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

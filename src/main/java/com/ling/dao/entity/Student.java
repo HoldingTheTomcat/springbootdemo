@@ -1,13 +1,21 @@
 package com.ling.dao.entity;
 
-public class Student {
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+public class Student implements Serializable {
     /** */
     private Integer id;
 
     /** 年龄*/
+    @NotNull
     private Integer age;
 
     /** 姓名*/
+    @NotEmpty(message = "狗的姓名不能为空")
     private String dogName;
 
     /** */
