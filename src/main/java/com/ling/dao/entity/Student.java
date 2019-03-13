@@ -1,10 +1,14 @@
 package com.ling.dao.entity;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Student implements Serializable {
     /** */

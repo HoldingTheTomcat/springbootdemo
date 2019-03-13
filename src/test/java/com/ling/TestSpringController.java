@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -26,6 +27,9 @@ public class TestSpringController {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private Environment environment;
     
     @Test
     public void  test1(){
@@ -34,7 +38,9 @@ public class TestSpringController {
 
     @Test
     public void testRedis() {
-        String name = stringRedisTemplate.opsForValue().get("name");
-        logger.info("name:{}", name);
+        // String name = stringRedisTemplate.opsForValue().get("name");
+        // logger.info("name:{}", name);
+        String property = environment.getProperty("ling.ge.name");
+        logger.info(property);
     }
 }
