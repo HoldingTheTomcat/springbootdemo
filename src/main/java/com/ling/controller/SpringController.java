@@ -39,6 +39,7 @@ public class SpringController {
         student.setDogName("lisi");
         //master-增加
         student.setAge(10);
+        //master-继续增加
         studentService.insertStudent(student);
         return student;
     }
