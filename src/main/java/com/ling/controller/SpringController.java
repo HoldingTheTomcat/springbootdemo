@@ -37,6 +37,7 @@ public class SpringController {
     public Student addStudent() throws Exception {
         Student student = new Student();
         student.setDogName("lisi");
+        //master-增加
         student.setAge(10);
         studentService.insertStudent(student);
         return student;
