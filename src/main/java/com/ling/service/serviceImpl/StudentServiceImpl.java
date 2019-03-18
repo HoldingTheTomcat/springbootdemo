@@ -34,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
      * @param student
      */
     @Override
-    @Transactional(transactionManager = "test2TransactionManager")
     public void insertStudent(Student student) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         studentTestMapper.insert(student);
