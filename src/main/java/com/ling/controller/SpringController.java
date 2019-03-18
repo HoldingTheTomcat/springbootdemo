@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ling.dao.entity.Student;
+import com.ling.manager.facade.UserManagerFacade;
 import com.ling.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,9 @@ import java.util.Map;
 public class SpringController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private UserManagerFacade userManagerFacade;
 
 
     @Autowired
@@ -120,5 +124,10 @@ public class SpringController {
         return "/jsp/editSelect";
     }
 
+    @RequestMapping("testChannel")
+    public String testChannel(Integer channelid) {
+        String name = userManagerFacade.getChanel(channelid).getName();
+        return name;
+    }
 
 }

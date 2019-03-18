@@ -1,11 +1,9 @@
 package com.ling.service.serviceImpl;
 
 import com.ling.dao.entity.Student;
-import com.ling.dao.mapper.test.StudentTestMapper;
 import com.ling.dao.mapper.test2.StudentTest2Mapper;
 import com.ling.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -44,9 +42,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Cacheable(value = "thisredis" ,key = "student_1")
     public List<Student> getStudentList() {
-        List<Student> students = studentMapper.selectByExample(null);
-        return students;
+        return null;
     }
+
 }
