@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserManager {
 
+    //如果该方法是共用方法，可以在这里写具体业务处理
     default String getName(){
         return "";
     };
