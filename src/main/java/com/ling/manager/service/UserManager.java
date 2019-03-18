@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserManager {
 
-    String getName();
+    default String getName(){
+        return "";
+    };
 
-    String getAge();
+    default String getAge(){
+        return "";
+    };
 
 }
