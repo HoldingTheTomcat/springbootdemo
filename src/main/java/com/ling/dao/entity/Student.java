@@ -1,81 +1,120 @@
 package com.ling.dao.entity;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-
-public class Student implements Serializable {
-    /** */
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /** 年龄*/
-    @NotNull
+    /**
+     * 年龄
+     */
     private Integer age;
 
-    /** 姓名*/
-    @NotEmpty(message = "狗的姓名不能为空")
+    /**
+     * 姓名
+     */
+    @Column(name = "dog_name")
     private String dogName;
 
-    /** */
+    @Column(name = "need_book")
     private String needBook;
 
-    /** */
+    @Column(name = "needMoney")
     private Integer needmoney;
 
-    /** */
     private String teacher;
 
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * 获取年龄
+     *
+     * @return age - 年龄
+     */
     public Integer getAge() {
         return age;
     }
 
+    /**
+     * 设置年龄
+     *
+     * @param age 年龄
+     */
     public void setAge(Integer age) {
         this.age = age;
     }
 
+    /**
+     * 获取姓名
+     *
+     * @return dog_name - 姓名
+     */
     public String getDogName() {
         return dogName;
     }
 
+    /**
+     * 设置姓名
+     *
+     * @param dogName 姓名
+     */
     public void setDogName(String dogName) {
-        this.dogName = dogName == null ? null : dogName.trim();
+        this.dogName = dogName;
     }
 
+    /**
+     * @return need_book
+     */
     public String getNeedBook() {
         return needBook;
     }
 
+    /**
+     * @param needBook
+     */
     public void setNeedBook(String needBook) {
-        this.needBook = needBook == null ? null : needBook.trim();
+        this.needBook = needBook;
     }
 
+    /**
+     * @return needMoney
+     */
     public Integer getNeedmoney() {
         return needmoney;
     }
 
+    /**
+     * @param needmoney
+     */
     public void setNeedmoney(Integer needmoney) {
         this.needmoney = needmoney;
     }
 
+    /**
+     * @return teacher
+     */
     public String getTeacher() {
         return teacher;
     }
 
+    /**
+     * @param teacher
+     */
     public void setTeacher(String teacher) {
-        this.teacher = teacher == null ? null : teacher.trim();
+        this.teacher = teacher;
     }
 }

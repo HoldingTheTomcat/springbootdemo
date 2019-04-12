@@ -69,7 +69,9 @@ public class WebLogAspect {
         if (resultObject != null) {
             resultString = JSON.toJSONString(resultObject);
         }
-        logger.info("controller调用结束:{} ->结果：{}", uuid.get(), resultString);
+        long endTime = System.currentTimeMillis();
+        logger.info("uuid:{}->controller调用结束 ->结果：{}", uuid.get(), resultString);
+        logger.info("uuid:{}->请求执行总时间：{}ms", uuid.get(),(endTime - startTime.get()));
     }
 
     //后置通知，方法执行成功之后，会执行此方法，如果方法执行出现异常，那么就不会执行此方法，returning 是切点方法的返回值
@@ -79,22 +81,22 @@ public class WebLogAspect {
         if (resultObject != null) {
             resultString = JSON.toJSONString(resultObject);
         }
-        logger.info("service调用结束:{} ->结果：{}", uuid, resultString);
+        long endTime = System.currentTimeMillis();
+        logger.info("uuid:{}->service调用结束->结果：{}", uuid, resultString);
+        logger.info("请求执行总时间：{}ms", (endTime - startTime.get()));
     }
 
 
     //最终通知，方法执行成功或者异常，都会执行此方法
     @After("commonPoint()")
     public void sayGoodbeyAfter(JoinPoint point) {
-        long endTime = System.currentTimeMillis();
-        logger.info("请求执行总时间：{}",(endTime-startTime.get()));
+        
     }
     
     private void loggerPrint(JoinPoint point, boolean isController) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
         HttpServletRequest request = servletRequestAttributes.getRequest();
-
         String ip = IpUtils.getClientIP(request);
         String className = getRealClassName(point);
         // String method = request.getMethod();
@@ -113,10 +115,10 @@ public class WebLogAspect {
         String returnTypeName = returnTypeString.substring(returnTypeString.lastIndexOf('.') + 1, returnTypeString.length());
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         if (isController) {
-            logger.info("controller调用开始 ->{}", uuid);
+            logger.info("uuid:{}->controller调用开始", uuid);
             logger.info("请求地址：{}", request.getRequestURI());
         } else {
-            logger.info("service调用开始 ->{}", uuid);
+            logger.info("uuid:{}->service 调用开始", uuid);
         }
 
         logger.info("ip:{}", ip);

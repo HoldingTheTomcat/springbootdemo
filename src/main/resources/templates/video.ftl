@@ -1,4 +1,3 @@
-F:\springbootdemo\src\main\resources\templates\js
 <head>
     <meta charset="UTF-8">
 </head>
@@ -15,13 +14,8 @@ F:\springbootdemo\src\main\resources\templates\js
     <input type="button" id="submitPhoto" value="上传图片">
 </div>
 <script type="text/javascript">
-    for (var i = 0; i < 3; i++) {
 
-    }
-
-    console.log("i:" + i);
-<html>
-    </script>
+</script>
 </body>
 </html>
                                                                                                                                                                                                                                                                                                                                                                       0

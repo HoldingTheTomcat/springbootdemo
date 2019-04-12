@@ -11,11 +11,12 @@ import com.ling.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by LingZi on 2018/11/21.
+ * Created by LingZi on 2018/11/21
  */
-@RestController
+@Controller
 public class SpringController {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger2 = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserManagerFacade userManagerFacade;
@@ -38,8 +39,11 @@ public class SpringController {
     private StudentService studentService;
 
     @GetMapping("addStudent")
-    public Student addStudent() throws Exception {
+    public Student addStudent(HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
         Student student = new Student();
+        String sessionId = session.getId();
+        
         student.setDogName("lisi");
         //master-增加
         //master-增加2
@@ -51,11 +55,9 @@ public class SpringController {
     }
 
 
-    @RequestMapping("validStudent")
-    public String validStudent(@Valid Student student) {
-        logger.info("name: {}", student.getDogName());
-        String aa = "";
-        return "/jsp/editSelect";
+    @RequestMapping("tohtml")
+    public String validStudent(String name,Integer age) {
+        return "index";
     }
 
     @RequestMapping("getStudentList")

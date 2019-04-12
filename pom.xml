@@ -20,7 +20,6 @@
     </parent>
 
     <properties>
-        <mybatis.spring-boot>1.3.2</mybatis.spring-boot>
         <mybatis.pagehelper>1.2.5</mybatis.pagehelper>
         <druid.spring-boot>1.1.9</druid.spring-boot>
         <lombok.version>1.18.2</lombok.version>
@@ -57,18 +56,27 @@
         <!-- web相关 end -->
         
         <!-- dao相关 start -->
-        <!-- SpringBoot的Mybatis启动器 -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
+        
+        <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- 改用tk.mybatis,该依赖会自动引入 MyBaits 相关依赖 -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- SpringBoot的Mybatis启动器 -->
+        <!--<dependency>-->
+        <!--<groupId>org.mybatis.spring.boot</groupId>-->
+        <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+        <!--<version>2.0.0</version>-->
+        <!--</dependency>-->
+        
 
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
@@ -76,11 +84,20 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.spring-boot}</version>
         </dependency>
+
+        <!-- 分页 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${mybatis.pagehelper}</version>
+        </dependency>
         
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        
+        
         <!-- dao相关 end -->
 
         <!-- 测试相关 start -->
@@ -159,8 +176,46 @@
                 </configuration>
             </plugin>
             -->
+
+            <!-- mybatis自动生成插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.5</version>
+                <configuration>
+                    <!--指明generatorConfig.xml位置-->
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile> 
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>3.4.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://192.168.150.132:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://192.168.150.132:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 </project>
