@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ling.dao.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.ling.dao.entity.Student">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="dog_name" jdbcType="VARCHAR" property="dogName" />
+    <result column="need_book" jdbcType="VARCHAR" property="needBook" />
+    <result column="needMoney" jdbcType="INTEGER" property="needmoney" />
+    <result column="teacher" jdbcType="VARCHAR" property="teacher" />
+  </resultMap>
+</mapper>

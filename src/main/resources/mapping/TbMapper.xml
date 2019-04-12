@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ling.dao.mapper.TbMapper">
+  <resultMap id="BaseResultMap" type="com.ling.dao.entity.Tb">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="姓名" jdbcType="VARCHAR" property="姓名" />
+    <result column="课程" jdbcType="VARCHAR" property="课程" />
+    <result column="分数" jdbcType="INTEGER" property="分数" />
+  </resultMap>
+</mapper>
