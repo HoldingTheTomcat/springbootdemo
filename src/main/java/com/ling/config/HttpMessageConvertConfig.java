@@ -19,7 +19,7 @@ public class HttpMessageConvertConfig {
     
     @Bean
     public HttpMessageConverters fastJsonMessageConvert(){
-        //创建fastJson消息转换器a
+        //创建fastJson消息转换器aa
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         //创建fastJson配置对象
         FastJsonConfig config = new FastJsonConfig();
