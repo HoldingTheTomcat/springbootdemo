@@ -19,7 +19,7 @@
     </appender>
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
-    <property name="log.path" value="G:/logs/java/springbootdemo"/>
+    <property name="log.path" value="/logs/java/springbootdemo"/>
 
     <!-- 文件滚动输出 level为 INFO 日志 -->
     <appender name="file-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
