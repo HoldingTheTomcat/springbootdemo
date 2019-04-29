@@ -1,8 +1,9 @@
 package com.ling.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-public class Student {
+public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -116,5 +117,17 @@ public class Student {
      */
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", age=" + age +
+                ", dogName='" + dogName + '\'' +
+                ", needBook='" + needBook + '\'' +
+                ", needmoney=" + needmoney +
+                ", teacher='" + teacher + '\'' +
+                '}';
     }
 }
