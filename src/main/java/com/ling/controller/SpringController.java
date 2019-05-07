@@ -8,12 +8,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ling.dao.entity.Student;
 import com.ling.manager.facade.UserManagerFacade;
 import com.ling.service.StudentService;
+import com.ling.util.RedisCache2;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,14 +28,39 @@ import java.util.Map;
 /**
  * Created by LingZi on 2018/11/21
  */
-@Controller
+@RestController
+@Api(tags = "student操作接口") //修饰整个类，描述 Controller 的作用
 public class SpringController {
 
     private Logger logger2 = LoggerFactory.getLogger(getClass());
 
+    @GetMapping("getStudentList")
+    @ApiOperation("查询所有学生") //描述一个类的一个方法，或者说一个接口
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "studentid",value = "学生编号",dataType = "String",paramType = "query",required = true),
+            @ApiImplicitParam(name = "name",value = "学生姓名",dataType = "String",required = true)
+    })
+    public List<Student> getStudentList(String studentid,String name ) {
+        RedisCache2 redisCache2 = new RedisCache2();
+        // RedisTemplate redisTemplate = redisCache2.getRedisTemplate();
+        List<Student> studentList = studentService.getStudentList();
+        return studentList;
+    }
+    
+    @PostMapping("updateStudent")
+    @ApiOperation(value = "更新学生信息", notes = "只做更新")//描述一个类的一个方法，或者说一个接口
+    public void  updateStudent(@ApiParam(name = "学生对象", required = true) Student student){
+        
+    }
+
+    @PostMapping("deleteStudent")
+    @ApiOperation(value = "删除学生信息", notes = "注意id必传")//描述一个类的一个方法，或者说一个接口
+    public void deleteStudent(@ApiParam(name = "学生对象",value = "传入json格式",required = true) @RequestBody Student student) {
+
+    }
+
     @Autowired
     private UserManagerFacade userManagerFacade;
-
 
     @Autowired
     private StudentService studentService;
@@ -44,13 +71,13 @@ public class SpringController {
         Student student = new Student();
         String sessionId = session.getId();
         
-        student.setDogName("lisi");
+        student.setDogNameNew("lisi-aaa11");
         //master-增加
         //master-增加2
         //master-增加3
-        student.setAge(10);
+        student.setDogAge(10);
         //master-继续增加
-        studentService.insertStudent(student);
+        // studentService.insertStudent(student);
         return student;
     }
 
@@ -60,17 +87,11 @@ public class SpringController {
         return "index";
     }
 
-    @RequestMapping("getStudentList")
-    public List<Student> getStudentList() {
-        List<Student> studentList = studentService.getStudentList();
-        return studentList;
-    }
-
     @RequestMapping("gackJson")
     public String gackJson() throws IOException {
         ObjectMapper jackSonMapper = new ObjectMapper();
         Student student = new Student();
-        student.setDogName("lisi");
+        student.setDogNameNew("lisi");
         // 对象转换为字符串
         String text = jackSonMapper.writeValueAsString(student);
         // 字符串转成对象

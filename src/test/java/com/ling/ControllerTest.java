@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @Description
  * @date 2019/4/16
  */
+@ActiveProfiles("test")
 public class ControllerTest extends BaseTest {
 
 
@@ -68,8 +70,8 @@ public class ControllerTest extends BaseTest {
 
         //set :Object 对象
         Student student1 = new Student();
-        student1.setAge(10);
-        student1.setDogName("wangzai");
+        student1.setDogAge(10);
+        student1.setDogNameNew("wangzai");
         //向redis里存入Student对象，并设置过期时间
         redisTemplate.opsForValue().set("student", student1, 20, TimeUnit.SECONDS);
         
@@ -117,7 +119,7 @@ public class ControllerTest extends BaseTest {
         System.out.println("1111");
         System.out.println("size:" + students.size());
         for (Student student : students) {
-            System.out.println("name:" + student.getDogName());
+            System.out.println("name:" + student.getDogNameNew());
         }
     }
 

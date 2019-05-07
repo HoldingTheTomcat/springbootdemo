@@ -21,7 +21,7 @@ public class TestMain {
     
     public static void main(String[] args) {
         Student student = new Student();
-        student.setAge(10);
+        student.setDogAge(10);
         Class<TestMain> testMainClass = TestMain.class;
         Method[] methods = testMainClass.getMethods();
         for (Method method : methods) {

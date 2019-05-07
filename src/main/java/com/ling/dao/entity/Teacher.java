@@ -17,6 +17,9 @@ public class Teacher {
      */
     private String name;
 
+    @Column(name = "left_id")
+    private Integer leftId;
+
     /**
      * @return id
      */
@@ -65,5 +68,19 @@ public class Teacher {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return left_id
+     */
+    public Integer getLeftId() {
+        return leftId;
+    }
+
+    /**
+     * @param leftId
+     */
+    public void setLeftId(Integer leftId) {
+        this.leftId = leftId;
     }
 }

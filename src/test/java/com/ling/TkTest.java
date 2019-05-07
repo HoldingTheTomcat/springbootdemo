@@ -32,8 +32,8 @@ public class TkTest extends BaseTest {
 
         //可进行动态sql拼接
         sqls = sqls
-                .andEqualTo(Student::getAge, 0)
-                .andLike(Student::getDogName, "%d%");
+                .andEqualTo(Student::getDogAge, 0)
+                .andLike(Student::getDogNameNew, "%d%");
         //获得结果
         List<Student> students = studentMapper.selectByExample(
                 Example
@@ -69,7 +69,7 @@ public class TkTest extends BaseTest {
         String keyword = "lisi";
         WeekendCriteria<Student, Object> keywordCriteria = weekend.weekendCriteria();
         if (!StringUtils.isNullOrEmpty(keyword)) {
-            keywordCriteria.orLike(Student::getDogName, keyword).orLike(Student::getNeedBook, keyword).orLike(Student::getTeacher, keyword);
+            keywordCriteria.orLike(Student::getDogNameNew, keyword).orLike(Student::getNeedBook, keyword).orLike(Student::getTeacher, keyword);
             //此处不需要再用下面这一句了,不然上面这个条件组合会重复一次
             //weekend.and(keywordCriteria)
         }
@@ -88,7 +88,7 @@ public class TkTest extends BaseTest {
         String keyword = "lisi";
         WeekendCriteria<Student, Object> keywordCriteria = weekend.weekendCriteria();
         if (!StringUtils.isNullOrEmpty(keyword)) {
-            keywordCriteria.orLike(Student::getDogName, keyword).orLike(Student::getNeedBook, keyword).orLike(Student::getTeacher, keyword);
+            keywordCriteria.orLike(Student::getDogNameNew, keyword).orLike(Student::getNeedBook, keyword).orLike(Student::getTeacher, keyword);
             //此处不需要再用下面这一句了,不然上面这个条件组合会重复一次
             //weekend.and(keywordCriteria)
         }

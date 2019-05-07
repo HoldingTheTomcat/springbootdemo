@@ -6,10 +6,19 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="dog_name" jdbcType="VARCHAR" property="dogName" />
+    <result column="dog_age" jdbcType="INTEGER" property="dogAge" />
+    <result column="dog_name_new" jdbcType="VARCHAR" property="dogNameNew" />
     <result column="need_book" jdbcType="VARCHAR" property="needBook" />
     <result column="needMoney" jdbcType="INTEGER" property="needmoney" />
     <result column="teacher" jdbcType="VARCHAR" property="teacher" />
   </resultMap>
+  <resultMap extends="com.ling.dao.mapper.StudentMapper.BaseResultMap" id="BaseResultMap1" type="map">
+  </resultMap>
+
+  <select id="selectEX" resultMap="BaseResultMap1">
+    select
+    *
+    from student
+   
+  </select>
 </mapper>

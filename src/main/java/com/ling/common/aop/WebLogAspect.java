@@ -134,7 +134,7 @@ public class WebLogAspect {
             }
         }
         logger.info("方法：{} {}({})", returnTypeName, methodName, paramName.toString());
-        paramType2(args, parameterNames);
+        paramType2(args, parameterNames, parameterTypes );
         this.uuid.set(uuid);
     }
 
@@ -151,12 +151,20 @@ public class WebLogAspect {
         logger.info("参数: {}", JSON.toJSONString(parameterMap, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue));
     }
 
-    private void paramType2(Object[] args, String[] parameterNames) {
+    private void paramType2(Object[] args, String[] parameterNames, Class[] parameterTypes) {
         for (int i = 0; i < parameterNames.length; i++) {
-            logger.info("参数: {}:{}", parameterNames[i], JSON.toJSONString(args[i], SerializerFeature.WriteMapNullValue));
+            if (isLog(parameterTypes[i])){
+                logger.info("参数: {}:{}", parameterNames[i], JSON.toJSONString(args[i], SerializerFeature.WriteMapNullValue));
+            }
         }
     }
 
+    private boolean isLog(Class c){
+        if (c == HttpServletRequest.class){
+            return false;
+        }
+        return true;
+    }
     private void paramType3(Object[] args, String[] parameterNames) {
         StringBuilder param = new StringBuilder();
         for (int i = 0; i < parameterNames.length; i++) {

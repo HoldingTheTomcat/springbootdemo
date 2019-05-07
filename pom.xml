@@ -164,6 +164,24 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- Swagger2 Begin -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <!-- Swagger2 End -->
     </dependencies>
 
     <build>
@@ -191,7 +209,7 @@
                 <version>1.3.5</version>
                 <configuration>
                     <!--指明generatorConfig.xml位置-->
-                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile> 
+                    <configurationFile>${basedir}/src/madin/resources/generator/generatorConfig.xml</configurationFile> 
                     <overwrite>true</overwrite>
                     <verbose>true</verbose>
                 </configuration>

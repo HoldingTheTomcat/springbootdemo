@@ -1,6 +1,7 @@
 package com.ling.service.serviceImpl;
 
 import com.ling.dao.entity.Student;
+import com.ling.dao.mapper.StudentMapper;
 import com.ling.dao.mapper.test2.StudentTest2Mapper;
 import com.ling.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentTest2Mapper studentTestMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
     
    /* @Override
     public void updateStudent(Student student) {
@@ -40,9 +44,24 @@ public class StudentServiceImpl implements StudentService {
         int i = 1 / 0;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
+    // @Transactional
     public List<Student> getStudentList() {
-        return null;
+        List<Student> students = studentMapper.selectAll();
+        System.out.println("111111111111//////////////");
+        List<Student> students2 = studentMapper.selectAll();
+        return students;
+        
     }
+    
+    
 
 }

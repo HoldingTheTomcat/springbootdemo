@@ -1,8 +1,12 @@
 package com.ling.dao.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@ApiModel(value = "学生信息接收对象", description = "接收学生age、name")
 public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,13 +15,16 @@ public class Student implements Serializable {
     /**
      * 年龄
      */
-    private Integer age;
+    @ApiModelProperty(value = "学生年龄", name = "dogAge",allowEmptyValue = true)
+    @Column(name = "dog_age")
+    private Integer dogAge;
 
     /**
      * 姓名
      */
-    @Column(name = "dog_name")
-    private String dogName;
+    @ApiModelProperty(value = "学生姓名", name = "dogNameNew",example = "旺仔",required = true)
+    @Column(name = "dog_name_new")
+    private String dogNameNew;
 
     @Column(name = "need_book")
     private String needBook;
@@ -44,37 +51,37 @@ public class Student implements Serializable {
     /**
      * 获取年龄
      *
-     * @return age - 年龄
+     * @return dog_age - 年龄
      */
-    public Integer getAge() {
-        return age;
+    public Integer getDogAge() {
+        return dogAge;
     }
 
     /**
      * 设置年龄
      *
-     * @param age 年龄
+     * @param dogAge 年龄
      */
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setDogAge(Integer dogAge) {
+        this.dogAge = dogAge;
     }
 
     /**
      * 获取姓名
      *
-     * @return dog_name - 姓名
+     * @return dog_name_new - 姓名
      */
-    public String getDogName() {
-        return dogName;
+    public String getDogNameNew() {
+        return dogNameNew;
     }
 
     /**
      * 设置姓名
      *
-     * @param dogName 姓名
+     * @param dogNameNew 姓名
      */
-    public void setDogName(String dogName) {
-        this.dogName = dogName;
+    public void setDogNameNew(String dogNameNew) {
+        this.dogNameNew = dogNameNew;
     }
 
     /**
@@ -117,17 +124,5 @@ public class Student implements Serializable {
      */
     public void setTeacher(String teacher) {
         this.teacher = teacher;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", age=" + age +
-                ", dogName='" + dogName + '\'' +
-                ", needBook='" + needBook + '\'' +
-                ", needmoney=" + needmoney +
-                ", teacher='" + teacher + '\'' +
-                '}';
     }
 }
