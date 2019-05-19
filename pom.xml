@@ -20,8 +20,10 @@
     </parent>
 
     <properties>
-        <mybatis.pagehelper>1.2.5</mybatis.pagehelper>
+        <!--   
         <druid.spring-boot>1.1.9</druid.spring-boot>
+        -->
+        <mybatis.pagehelper>1.2.5</mybatis.pagehelper>
         <lombok.version>1.18.2</lombok.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,12 +80,13 @@
         <!--</dependency>-->
         
 
-        <!-- alibaba的druid数据库连接池 -->
+        <!-- alibaba的druid数据库连接池
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.spring-boot}</version>
-        </dependency>
+        </dependency> 
+        -->
 
         <!-- 分页 -->
         <dependency>
