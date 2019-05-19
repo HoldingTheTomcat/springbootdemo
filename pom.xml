@@ -20,7 +20,6 @@
     </parent>
 
     <properties>
-        <mybatis.spring-boot>1.3.2</mybatis.spring-boot>
         <mybatis.pagehelper>1.2.5</mybatis.pagehelper>
         <druid.spring-boot>1.1.9</druid.spring-boot>
         <lombok.version>1.18.2</lombok.version>
@@ -40,25 +39,44 @@
         </dependency>
 
         <!-- freemarker -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-freemarker</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>net.sourceforge.nekohtml</groupId>-->
+            <!--<artifactId>nekohtml</artifactId>-->
+            <!--<version>1.9.22</version>-->
+        <!--</dependency>-->
+
         <!-- web相关 end -->
         
         <!-- dao相关 start -->
-        <!-- SpringBoot的Mybatis启动器 -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
+        
+        <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- 改用tk.mybatis,该依赖会自动引入 MyBaits 相关依赖 -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+        <!-- SpringBoot的Mybatis启动器 -->
+        <!--<dependency>-->
+        <!--<groupId>org.mybatis.spring.boot</groupId>-->
+        <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+        <!--<version>2.0.0</version>-->
+        <!--</dependency>-->
+        
 
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
