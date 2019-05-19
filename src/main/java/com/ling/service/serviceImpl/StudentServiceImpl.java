@@ -58,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> students = studentMapper.selectAll();
         System.out.println("111111111111//////////////");
         List<Student> students2 = studentMapper.selectAll();
-        return students;
+        return students2;
         
     }
     

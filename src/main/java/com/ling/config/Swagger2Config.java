@@ -29,7 +29,9 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("springbootdemo API 文档")
-                .description("iToken API 网关接口，http://www.lingzi.com")
+                .description(
+                        "服务名：spring-boot-demo\r\n"+"请求地址：http://www.lingzi.com"
+                )
                 .termsOfServiceUrl("http://www.lingzi.com")
                 .version("1.0.0")
                 .build();
