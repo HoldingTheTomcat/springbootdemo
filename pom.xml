@@ -95,11 +95,6 @@
             <version>${mybatis.pagehelper}</version>
         </dependency>
 
-        <!-- redis相关 start -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
         
         <!--连接池-->
         <dependency>
@@ -127,14 +122,6 @@
         </dependency>
         -->
 
-        <!-- rabbitMQ相关 start -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <!-- rabbitMQ相关 end -->
-
-        
         
         <!-- dubbo相关 start -->
         <!--<dependency>

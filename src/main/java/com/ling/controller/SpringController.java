@@ -15,6 +15,7 @@ import jdk.nashorn.internal.objects.NativeUint8Array;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,10 +29,17 @@ import java.util.Map;
 /**
  * Created by LingZi on 2018/11/21
  */
-@RestController
+@Controller
 @Api(tags = "student操作接口") //修饰整个类，描述 Controller 的作用
 public class SpringController {
 
+
+    @RequestMapping("tohtml")
+    public String validStudent(String name, Integer age) {
+        return "index";
+    }
+    
+    
     private Logger logger2 = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -103,12 +111,6 @@ public class SpringController {
         //master-继续增加
         // studentService.insertStudent(student);
         return student;
-    }
-
-
-    @RequestMapping("tohtml")
-    public String validStudent(String name,Integer age) {
-        return "index";
     }
 
     @RequestMapping("gackJson")
