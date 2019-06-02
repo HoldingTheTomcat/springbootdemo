@@ -6,14 +6,11 @@ import com.ling.common.entity.R;
 import com.ling.dao.entity.SysUserEntity;
 import com.ling.shiro.ShiroUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -32,9 +29,8 @@ public class SysLoginController {
 	
 	@GetMapping("ling")
 	public String toLing(){
-
 		System.out.println(1);
-		return "html/index";
+		return "index";
 	}
 
 	@GetMapping("/sys/user/info")
@@ -44,6 +40,7 @@ public class SysLoginController {
 		return R.ok().put("user", user);
 	}
 	
+	//获取验证码：不拦截
 	@GetMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response)throws ServletException, IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
@@ -63,26 +60,23 @@ public class SysLoginController {
 	}
 	
 	/**
-	 * 登录
+	 * 登录：不拦截
 	 */
 	@ResponseBody
-	// @PostMapping(value = "/sys/login")
-	@GetMapping(value = "/sys/login")
+	@PostMapping(value = "/sys/login")
 	public R login(String username, String password, String captcha)throws IOException {
-		/*String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+		String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
 		if(!captcha.equalsIgnoreCase(kaptcha)){
 			return R.error("验证码不正确");
-		}*/
+		}
 
-		username = "lisi";
-		password = "123";
 		try{
 			Subject subject = ShiroUtils.getSubject();
-		/*	// Md5Hash(Object source, Object salt, int hashIterations) 
+			
+			//controller直接加盐加密，SimpleAuthenticationInfo就不用加了，到时候跟数据库里面加密的密码比对
+			// Md5Hash(Object source, Object salt, int hashIterations) 
 			Md5Hash md5Hash = new Md5Hash(password, username, 1024);
-			password = md5Hash.toString();
-			//sha256加密
-			password = new Sha256Hash(password).toHex();*/
+			
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 			
 			//记住我，会向浏览器写入cookie:rememberMe ,默认是一年

@@ -5,6 +5,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserRealm  extends AuthorizingRealm {
-
 
     /**
      * 认证： 先认证再授权
@@ -33,6 +33,9 @@ public class UserRealm  extends AuthorizingRealm {
         user.setUsername("lisi");
         user.setStatus(1);
         String password = user.getPassword();
+        String nameSalt = user.getUsername();
+
+        ByteSource bytes = ByteSource.Util.bytes(nameSalt);
 
         // 需要手动判断：账号是否存在，因为SimpleAuthenticationInfo只会比较密码，并不校验用户名是否正确，用户名是否存在
         if (user == null) {
@@ -51,7 +54,7 @@ public class UserRealm  extends AuthorizingRealm {
         }
 
         // 第一个参数并不是uername
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, bytes, getName());
         return info;
     }
 

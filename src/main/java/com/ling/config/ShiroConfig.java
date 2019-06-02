@@ -1,6 +1,7 @@
 package com.ling.config;
 
 import com.ling.shiro.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -23,7 +24,7 @@ import java.util.Map;
  * @date 2019/6/1
  */
 
-// @Configuration
+@Configuration
 public class ShiroConfig {
 
 
@@ -46,6 +47,15 @@ public class ShiroConfig {
         securityManager.setRealm(userRealm);
         securityManager.setSessionManager(sessionManager);
 
+        //加密、加盐
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        matcher.setHashAlgorithmName("md5");
+        matcher.setHashIterations(1024);
+        //已过期：已经不需要指定加盐，因为只要返回带盐的SimpleAuthenticationInfo就行了
+        // matcher.setHashSalted(true);
+        userRealm.setCredentialsMatcher(matcher);
+        
+        
         //cookie:记住我相关设置
         CookieRememberMeManager rememberMeManager = new CookieRememberMeManager();
         Cookie cookie = rememberMeManager.getCookie();
@@ -61,10 +71,10 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager);
         
         //登录页配置，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilter.setLoginUrl("/html/login.html"); 
+        shiroFilter.setLoginUrl("/login.html"); 
         //认证成功跳转到主页
-        shiroFilter.setSuccessUrl("/html/index.html");
-        //没有权限页面
+        shiroFilter.setSuccessUrl("/index.html");
+        //没有权限页面,如果没登录，那么连未授权提示页面都看不到
         shiroFilter.setUnauthorizedUrl("unauthorized.html"); 
 
         //为了保证过滤的优先顺序，所以使用LinkedHashMap
