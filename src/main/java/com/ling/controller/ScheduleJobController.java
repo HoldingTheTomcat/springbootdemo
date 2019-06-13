@@ -5,8 +5,10 @@ import com.ling.common.entity.Query;
 import com.ling.common.entity.R;
 import com.ling.common.validator.ValidatorUtils;
 import com.ling.dao.entity.ScheduleJobEntity;
+import com.ling.quartz.ScheduleUtils;
 import com.ling.service.ScheduleJobService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -122,6 +124,14 @@ public class ScheduleJobController {
 		scheduleJobService.resume(jobIds);
 		
 		return R.ok();
+	}
+
+	@Autowired
+	private Scheduler scheduler;
+	
+	@GetMapping("deleteJob")
+	public void deleteJob(){
+		ScheduleUtils.deleteScheduleJob(scheduler, null);
 	}
 
 }

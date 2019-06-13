@@ -16,35 +16,35 @@ public class QuartzConfig {
 
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
-        SchedulerFactoryBean factory = new SchedulerFactoryBean();
-        factory.setDataSource(dataSource);
-
         //quartz参数
         Properties prop = new Properties();
-        prop.put("org.quartz.scheduler.instanceName", "MyScheduler");
+        //配置实例
+        prop.put("org.quartz.scheduler.instanceName", "MyScheduler"); //实例名称
         prop.put("org.quartz.scheduler.instanceId", "AUTO");
         //线程池配置
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
         prop.put("org.quartz.threadPool.threadCount", "20");
         prop.put("org.quartz.threadPool.threadPriority", "5");
-        //JobStore配置
-        prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
+        //JobStore配置存储方式
+        prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX"); //存储在数据库
+        prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_"); //表的浅醉，即持久化在数据库中以QRTZ为开头的表中
+        
         //集群配置
         prop.put("org.quartz.jobStore.isClustered", "true");
         prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
         prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
-
         prop.put("org.quartz.jobStore.misfireThreshold", "12000");
-        prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_");
-        factory.setQuartzProperties(prop);
 
-        factory.setSchedulerName("CfScheduler");
-        //延时启动
+        SchedulerFactoryBean factory = new SchedulerFactoryBean();
+        factory.setDataSource(dataSource);
+        factory.setQuartzProperties(prop);
+        factory.setSchedulerName("Myscheduler");
+        //延时启动,应用启动后，QuartzScheduler再启动
         factory.setStartupDelay(30);
-        factory.setApplicationContextSchedulerContextKey("applicationContextKey");
+        // factory.setApplicationContextSchedulerContextKey("applicationContextKey");
         //可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了
         factory.setOverwriteExistingJobs(true);
-        //设置自动启动，默认为true ,不想设置为自动启动，设置为false，不过设置不自动启动一般不用这种方式
+        //设置自动启动，默认为true
         factory.setAutoStartup(true);
 
         return factory;
