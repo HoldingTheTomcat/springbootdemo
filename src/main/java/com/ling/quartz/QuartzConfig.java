@@ -20,7 +20,7 @@ public class QuartzConfig {
         Properties prop = new Properties();
         //配置实例
         prop.put("org.quartz.scheduler.instanceName", "MyScheduler"); //实例名称
-        prop.put("org.quartz.scheduler.instanceId", "AUTO");
+        prop.put("org.quartz.scheduler.instanceId", "AUTO"); 
         //线程池配置
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
         prop.put("org.quartz.threadPool.threadCount", "20");
@@ -39,12 +39,13 @@ public class QuartzConfig {
         factory.setDataSource(dataSource);
         factory.setQuartzProperties(prop);
         factory.setSchedulerName("Myscheduler");
-        //延时启动,应用启动后，QuartzScheduler再启动
+        //延时启动,应用启动30秒后，QuartzScheduler再启动
         factory.setStartupDelay(30);
         // factory.setApplicationContextSchedulerContextKey("applicationContextKey");
-        //可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了
+        // 可选，QuartzScheduler 每次重启服务器时，他有一个默认的行为，先把qrtz_job_details表里面的数据清空，
+        // 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了
         factory.setOverwriteExistingJobs(true);
-        //设置自动启动，默认为true
+        // 设置自动启动，默认为true，即1 每次重启服务qrtz_job_details表里面的任务自动运行，2 每次创建完一个job实例的时候，是不是马上自动运行
         factory.setAutoStartup(true);
 
         return factory;

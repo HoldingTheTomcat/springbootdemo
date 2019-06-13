@@ -131,6 +131,7 @@ public class ScheduleJobController {
 	
 	@GetMapping("deleteJob")
 	public void deleteJob(){
+		
 		ScheduleUtils.deleteScheduleJob(scheduler, null);
 	}
 

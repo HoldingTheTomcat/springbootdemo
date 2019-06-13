@@ -16,6 +16,11 @@
             <property name="mappers" value="com.tk.mybatis.BaseMapper"/>
         </plugin>
 
+        <!--配置生成pojo的序列化插件-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--配置生成pojo的toString()插件-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
         <!-- 数据库连接配置，引入方式，也可以直接写 -->
         <jdbcConnection
                 driverClass="${spring.datasource.driver-class-name}"
@@ -43,8 +48,8 @@
         </table>-->
         
         <!--或者单个方式生成-->
-        <table tableName="schedule_job" domainObjectName="ScheduleJobEntity">
-            <generatedKey column="job_id" sqlStatement="Mysql" identity="true"/>
+        <table tableName="schedule_job_log" domainObjectName="ScheduleJobLogEntity">
+            <generatedKey column="log_id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

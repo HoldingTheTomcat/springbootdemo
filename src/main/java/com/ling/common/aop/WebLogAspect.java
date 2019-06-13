@@ -26,8 +26,8 @@ import java.util.UUID;
  * @date 2018/12/1
  */
 
-@Aspect
-@Component
+// @Aspect
+// @Component
 public class WebLogAspect {
 
     private Logger logger = LoggerFactory.getLogger(getClass());

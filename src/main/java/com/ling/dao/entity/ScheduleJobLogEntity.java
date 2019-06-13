@@ -1,15 +1,19 @@
 package com.ling.dao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "schedule_job_log")
-public class ScheduleJobLogEntity {
+public class ScheduleJobLogEntity implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     /**
      * 日志id
      */
     @Id
     @Column(name = "log_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
 
     /**

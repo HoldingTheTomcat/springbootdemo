@@ -35,6 +35,7 @@ public class ScheduleUtils {
      */
     public static CronTrigger getCronTrigger(Scheduler scheduler, Long jobId) {
         try {
+            //因为我们使用的都是CronTrigger,所以这里直接转型成CronTrigger
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(jobId));
         } catch (SchedulerException e) {
             throw new RRException("获取定时任务CronTrigger出现异常", e);
@@ -57,8 +58,9 @@ public class ScheduleUtils {
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(scheduleJob.getJobId())).withSchedule(scheduleBuilder).build();
 
             //todo 意思未知
-            //放入参数，运行时的方法可以获取
-            jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
+            //在quart上下文中传递参数，运行时job类就可以获取了
+            // jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
+            jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, scheduleJob);
             
             scheduler.scheduleJob(jobDetail, trigger);
             
@@ -81,15 +83,18 @@ public class ScheduleUtils {
             //表达式调度构建器
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
             		.withMisfireHandlingInstructionDoNothing();
-
+            
+            //获取原有的trigger
             CronTrigger trigger = getCronTrigger(scheduler, scheduleJob.getJobId());
             
-            //按新的cronExpression表达式重新构建trigger
+            //为原有的trigger赋予新的cron表达式，即按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
             
-            //参数
-            trigger.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
-            
+            //quartz上下文数据更新
+            // trigger.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
+            trigger.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, scheduleJob);
+
+            // 执行原有的trigger的更新
             scheduler.rescheduleJob(triggerKey, trigger);
             
             //暂停任务

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("scheduleJobService")
+@Service
 public class ScheduleJobServiceImpl implements ScheduleJobService {
 	@Autowired
     private Scheduler scheduler;
@@ -27,7 +27,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 	/**
 	 * 项目启动时，初始化定时器
 	 */
-	@PostConstruct
+	/*@PostConstruct
 	public void init(){
 		List<ScheduleJobEntity> scheduleJobList = schedulerJobDao.selectAll();
 		for(ScheduleJobEntity scheduleJob : scheduleJobList){
@@ -39,7 +39,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
                 ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
             }
 		}
-	}
+	}*/
 	
 	@Override
 	public ScheduleJobEntity queryObject(Long jobId) {
@@ -60,7 +60,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 	@Transactional
 	public void save(ScheduleJobEntity scheduleJob) {
 		scheduleJob.setCreateTime(new Date());
-		scheduleJob.setStatus(Constant.ScheduleStatus.NORMAL.getValue());
+		// scheduleJob.setStatus(Constant.ScheduleStatus.NORMAL.getValue());
         schedulerJobDao.insertSelective(scheduleJob);
         
         ScheduleUtils.createScheduleJob(scheduler, scheduleJob);

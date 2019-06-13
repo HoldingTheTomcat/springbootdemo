@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ScheduleJobEntity implements Serializable {
 
     /**
-     * 任务调度参数key
+     * quartz上下文中存储的数据的key: 任务调度参数key ，value对应task的spring实例id
      */
     public static final String JOB_PARAM_KEY = "JOB_PARAM_KEY";
     
