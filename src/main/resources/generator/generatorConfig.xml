@@ -37,13 +37,13 @@
                 type="XMLMAPPER"/>
 
         <!-- 配置需要指定生成的数据库和表，% 代表所有表 -->
-        <table tableName="%" >
-            <!-- 配置主键生成策略 ,所有表的主键都叫id-->
+       <!-- <table tableName="%" >
+            &lt;!&ndash; 配置主键生成策略 ,所有表的主键都叫id&ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
-        
-        <!--或者单个方式生成
-        <table tableName="TXT_NWS_TYP" domainObjectName="TxtNwsTyp">
         </table>-->
+        
+        <!--或者单个方式生成-->
+        <table tableName="schedule_job" domainObjectName="ScheduleJob">
+        </table>
     </context>
 </generatorConfiguration>
