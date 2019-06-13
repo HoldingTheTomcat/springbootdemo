@@ -21,7 +21,7 @@ import java.util.List;
 public class TkTest extends BaseTest {
 
 
-    private static Logger logger = LoggerFactory.getLogger(TestMain.class);
+    private static Logger logger = LoggerFactory.getLogger(TkTest.class);
 
     @Autowired
     private StudentMapper studentMapper;

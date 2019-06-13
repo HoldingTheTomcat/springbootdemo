@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class ControllerTest extends BaseTest {
 
 
-    private static Logger logger = LoggerFactory.getLogger(TestMain.class);
+    private static Logger logger = LoggerFactory.getLogger(ControllerTest.class);
 
     @Autowired
     private SpringController springController;

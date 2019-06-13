@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ling.dao.mapper.ScheduleJobLogEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ling.dao.entity.ScheduleJobLogEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="bean_Name" jdbcType="VARCHAR" property="beanName" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="error" jdbcType="VARCHAR" property="error" />
+    <result column="times" jdbcType="BIGINT" property="times" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+</mapper>
