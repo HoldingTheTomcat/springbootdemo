@@ -25,9 +25,9 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 	private ScheduleJobEntityMapper schedulerJobDao;
 	
 	/**
-	 * 项目启动时，初始化定时器
+	 * 项目启动时，从数据库获得schedule_job，并初始化定时器，代替直接根据上下文初始化
 	 */
-	/*@PostConstruct
+	@PostConstruct
 	public void init(){
 		List<ScheduleJobEntity> scheduleJobList = schedulerJobDao.selectAll();
 		for(ScheduleJobEntity scheduleJob : scheduleJobList){
@@ -39,7 +39,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
                 ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
             }
 		}
-	}*/
+	}
 	
 	@Override
 	public ScheduleJobEntity queryObject(Long jobId) {
@@ -60,6 +60,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 	@Transactional
 	public void save(ScheduleJobEntity scheduleJob) {
 		scheduleJob.setCreateTime(new Date());
+		//数据库已经做了，不填默认为正常
 		// scheduleJob.setStatus(Constant.ScheduleStatus.NORMAL.getValue());
         schedulerJobDao.insertSelective(scheduleJob);
         

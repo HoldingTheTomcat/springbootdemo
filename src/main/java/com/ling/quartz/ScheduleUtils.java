@@ -57,10 +57,11 @@ public class ScheduleUtils {
             //按新的cronExpression表达式构建一个新的trigger
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(scheduleJob.getJobId())).withSchedule(scheduleBuilder).build();
 
-            //todo 意思未知
             //在quart上下文中传递参数，运行时job类就可以获取了
             // jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
-            jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, scheduleJob);
+            JobDataMap jobDataMap = jobDetail.getJobDataMap();
+            System.out.println(jobDataMap);
+            jobDataMap.put(ScheduleJobEntity.JOB_PARAM_KEY, scheduleJob);
             
             scheduler.scheduleJob(jobDetail, trigger);
             
