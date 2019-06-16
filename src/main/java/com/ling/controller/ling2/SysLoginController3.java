@@ -1,4 +1,4 @@
-package com.ling.controller;
+package com.ling.controller.ling2;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -25,7 +26,8 @@ import java.io.IOException;
  */
 @Controller
 @Api("登录信息接口")
-public class SysLoginController {
+@RequestMapping("/ling")
+public class SysLoginController3 {
 	@Autowired
 	private Producer producer;
 	

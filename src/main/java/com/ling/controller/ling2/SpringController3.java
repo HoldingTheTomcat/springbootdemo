@@ -1,4 +1,4 @@
-package com.ling.controller;
+package com.ling.controller.ling2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -11,12 +11,14 @@ import com.ling.dao.mapper.StudentNewMapper;
 import com.ling.manager.facade.UserManagerFacade;
 import com.ling.service.StudentService;
 import io.swagger.annotations.*;
-import jdk.nashorn.internal.objects.NativeUint8Array;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,8 +32,9 @@ import java.util.Map;
  * Created by LingZi on 2018/11/21
  */
 @Controller
-@Api(tags = "合同后台管理接口") //修饰整个类，描述 Controller 的作用
-public class SpringController {
+@Api(tags = "合同后台管理接口2") //修饰整个类，描述 Controller 的作用
+@RequestMapping("/ling")
+public class SpringController3 {
 
     private Logger logger2 = LoggerFactory.getLogger(getClass());
 
@@ -65,10 +68,6 @@ public class SpringController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "studentid",value = "学生编号",dataType = "String",paramType = "query",required = true),
             @ApiImplicitParam(name = "name",value = "学生姓名",dataType = "String",required = true)
-    })
-    @ApiResponses({
-            @ApiResponse(code = -1,message = "学生信息不存在"),
-            @ApiResponse(code =  0,message = "查询成功")
     })
     public List<Student> getStudentList(String studentid,String name ) {
         // RedisTemplate redisTemplate = redisCache2.getRedisTemplate();

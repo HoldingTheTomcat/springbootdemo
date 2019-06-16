@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(hidden = true)
     private Integer id;
 
     /**
@@ -26,6 +27,7 @@ public class Student implements Serializable {
     @Column(name = "dog_name_new")
     private String dogNameNew;
 
+    
     @Column(name = "need_book")
     private String needBook;
 
