@@ -7,8 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -24,6 +24,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @date 2019/5/7
  */
 @Configuration
+@Profile({"dev","test"})
 public class Swagger2Config {
     @Bean
     public Docket createRestApi() {
@@ -88,9 +89,9 @@ public class Swagger2Config {
 
     /**
      * 自定义或注解，满足条件，才在Api中显示
-     * 根据或注解：分组 
+     * 根据或注解：分组
      */
-    
+
     @Bean
     public Docket loanOrApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -105,17 +106,18 @@ public class Swagger2Config {
 
     /**
      * 或条件设置
+     *
      * @return
      */
     public Predicate<RequestHandler> setApis() {
-        Predicate<RequestHandler> predicate = new Predicate<RequestHandler>(){
+        Predicate<RequestHandler> predicate = new Predicate<RequestHandler>() {
             @Override
             public boolean apply(RequestHandler input) {
-                
+
                 Class<?> declaringClass = input.declaringClass();
                 Package aPackage = declaringClass.getPackage();
-                System.out.println("package"+aPackage.toString());
-               
+                System.out.println("package" + aPackage.toString());
+
                 if (declaringClass == BasicErrorController.class)// 排除
                     return false;
                 if (declaringClass.isAnnotationPresent(Api.class)) // 被注解的类
@@ -124,7 +126,7 @@ public class Swagger2Config {
                     return true;
                 if (input.isAnnotatedWith(ApiOperation.class))//只有添加了ApiOperation注解的method才在API中显示
                     return true;
-                if(aPackage.toString().equals("package com.ling.controller.ling2")){
+                if (aPackage.toString().equals("package com.ling.controller.ling2")) {
                     return true;
                 }
                 return false;
