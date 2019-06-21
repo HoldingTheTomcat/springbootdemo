@@ -60,7 +60,6 @@ public class ScheduleUtils {
             //在quart上下文中传递参数，运行时job类就可以获取了
             // jobDetail.getJobDataMap().put(ScheduleJobEntity.JOB_PARAM_KEY, JSON.toJSONString(scheduleJob));
             JobDataMap jobDataMap = jobDetail.getJobDataMap();
-            System.out.println(jobDataMap);
             jobDataMap.put(ScheduleJobEntity.JOB_PARAM_KEY, scheduleJob);
             
             scheduler.scheduleJob(jobDetail, trigger);

@@ -116,7 +116,6 @@ public class Swagger2Config {
 
                 Class<?> declaringClass = input.declaringClass();
                 Package aPackage = declaringClass.getPackage();
-                System.out.println("package" + aPackage.toString());
 
                 if (declaringClass == BasicErrorController.class)// 排除
                     return false;
