@@ -61,7 +61,7 @@ public class Swagger2Config {
                 .apiInfo(loanInfo())
                 // .useDefaultResponseMessages(false) 关闭使用默认返回格式
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.ling.controller.loan"))//api接口包扫描路径
+                .apis(RequestHandlerSelectors.basePackage("com.ling.controller.ling2"))//api接口包扫描路径
                 // .paths(PathSelectors.regex(".*/admin/.*"))//可以根据url路径设置哪些请求加入文档，忽略哪些请求
                 .paths(PathSelectors.any())
                 .build();

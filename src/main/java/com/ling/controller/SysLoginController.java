@@ -78,8 +78,7 @@ public class SysLoginController {
 			//controller直接加盐加密，SimpleAuthenticationInfo就不用加了，到时候跟数据库里面加密的密码比对
 			// Md5Hash(Object source, Object salt, int hashIterations) 
 			Md5Hash md5Hash = new Md5Hash(password, username, 1024);
-			
-			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			UsernamePasswordToken token = new UsernamePasswordToken(username, md5Hash.toString());
 			
 			//记住我，会向浏览器写入cookie:rememberMe ,默认是一年
 			//虽然有了cookie,但是过滤器不支持，访问需要认真、授权的资源，还是会被拦截

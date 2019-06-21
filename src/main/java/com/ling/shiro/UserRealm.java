@@ -29,8 +29,8 @@ public class UserRealm  extends AuthorizingRealm {
         // 去数据库查询用户
         // SysUserEntity user = sysUserService.queryByUserName(inputUsername);
         SysUserEntity user = new SysUserEntity();
-        user.setPassword("123");
-        user.setUsername("lisi");
+        user.setUsername("ling");
+        user.setPassword("000000");
         user.setStatus(1);
         String password = user.getPassword();
         String nameSalt = user.getUsername();

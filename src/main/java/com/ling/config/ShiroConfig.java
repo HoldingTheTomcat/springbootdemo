@@ -23,11 +23,8 @@ import java.util.Map;
  * @Description
  * @date 2019/6/1
  */
-
 @Configuration
 public class ShiroConfig {
-
-
     @Bean
     public SessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
@@ -75,7 +72,7 @@ public class ShiroConfig {
         //认证成功跳转到主页
         shiroFilter.setSuccessUrl("/index.html");
         //没有权限页面,如果没登录，那么连未授权提示页面都看不到
-        shiroFilter.setUnauthorizedUrl("unauthorized.html"); 
+        shiroFilter.setUnauthorizedUrl("/unauthorized.html"); 
 
         //为了保证过滤的优先顺序，所以使用LinkedHashMap
         Map<String, String> filterMap = new LinkedHashMap<>();
