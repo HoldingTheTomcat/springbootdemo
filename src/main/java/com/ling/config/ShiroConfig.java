@@ -88,7 +88,7 @@ public class ShiroConfig {
         //swagger配置
         filterMap.put("/swagger**", "anon");
         filterMap.put("/v2/api-docs", "anon");
-        filterMap.put("/swagger-resources/configuration/ui", "anon");
+        filterMap.put("/swagger-resources/**", "anon");
         
         //选中记住我能访问的资源，可以设置指定路径下的资源，做为记住我能访问
         filterMap.put("/**", "user");
