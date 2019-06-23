@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -120,6 +121,8 @@ public class Swagger2Config {
                 if (declaringClass == BasicErrorController.class)// 排除
                     return false;
                 if (declaringClass.isAnnotationPresent(Api.class)) // 被注解的类
+                    return true;    
+                if (declaringClass.isAnnotationPresent(RestController.class)) // 被注解的类
                     return true;
                 if (input.isAnnotatedWith(ResponseBody.class)) // 被注解的方法
                     return true;
