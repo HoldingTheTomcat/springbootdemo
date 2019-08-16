@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ling.dao.entity.Student;
-import com.ling.manager.facade.UserManagerFacade;
+import com.ling.manager.service.UserManager;
 import com.ling.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +29,6 @@ import java.util.Map;
 public class SpringController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    private UserManagerFacade userManagerFacade;
-
 
     @Autowired
     private StudentService studentService;
@@ -114,7 +110,7 @@ public class SpringController {
 
         // 在遇到未知属性的时候不抛出异常：原因: 如果json字符串中出现java对象中没有的属性，则在将json转换为java对象时会报错
         jackSonMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-       
+
         // 强制JSON 空字符串("")转换为null对象值:
         jackSonMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
@@ -126,7 +122,7 @@ public class SpringController {
 
     @RequestMapping("testChannel")
     public String testChannel(Integer channelid) {
-        String name = userManagerFacade.getChanel(channelid).getName();
+        String name = UserManager.getChanel(channelid).getName();
         return name;
     }
 
