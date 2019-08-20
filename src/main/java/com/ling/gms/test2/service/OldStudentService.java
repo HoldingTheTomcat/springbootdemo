@@ -9,4 +9,6 @@ import com.ling.gms.test2.dao.entity.OldStudent;
  */
 public interface OldStudentService {
     void insertStudent(OldStudent student);
+
+    OldStudent getStudentById(Integer id);
 }

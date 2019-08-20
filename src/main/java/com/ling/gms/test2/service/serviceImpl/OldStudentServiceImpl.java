@@ -21,9 +21,15 @@ public class OldStudentServiceImpl implements OldStudentService {
 
     @Override
     @Transactional
-    // @DataSource(name = "test")
     public void insertStudent(OldStudent student) {
         oldStudentMapper.updateByPrimaryKeySelective(student);
         // int i = 1 / 0;
+    }
+
+    @Override
+    @Transactional
+    public OldStudent getStudentById(Integer id) {
+        OldStudent oldStudent = oldStudentMapper.selectByPrimaryKey(id);
+        return oldStudent;
     }
 }

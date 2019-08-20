@@ -1,0 +1,12 @@
+-- auto-generated definition
+create table student
+(
+    id        int(10) auto_increment
+        primary key,
+    age       int(10)                null comment '年龄',
+    dog_name  varchar(20)            null comment '姓名',
+    need_book varchar(20) default '' null,
+    needMoney int                    null,
+    teacher   varchar(10)            null
+);
+

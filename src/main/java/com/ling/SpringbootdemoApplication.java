@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication  
+@SpringBootApplication
 @EnableScheduling
-@MapperScan("com.ling.gms.test2.dao.mapper")
+@MapperScan({"com.ling.gms.test2.dao.mapper", "com.ling.gms.test.dao.mapper"})
 @EnableTransactionManagement
 public class SpringbootdemoApplication {
 

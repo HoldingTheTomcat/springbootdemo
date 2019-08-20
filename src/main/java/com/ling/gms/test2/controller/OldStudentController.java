@@ -5,6 +5,7 @@ import com.ling.gms.test2.service.OldStudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,6 @@ public class OldStudentController {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
 
-   
-    
     @Autowired
     private OldStudentService studentService;
 
@@ -28,10 +27,16 @@ public class OldStudentController {
     public OldStudent toUplaod4() throws Exception {
         OldStudent student = new OldStudent();
         student.setId(1);
-        student.setAge(125);
+        student.setAge(177);
         System.out.println();
         studentService.insertStudent(student);
         // studentService.insertStudent(student);
         return student;
+    }
+
+    @GetMapping("getStudentById")
+    public OldStudent getStudentById(){
+        OldStudent oldStudent =  studentService.getStudentById(1);
+        return oldStudent;
     }
 }
