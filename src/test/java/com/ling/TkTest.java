@@ -2,7 +2,7 @@ package com.ling;
 
 import com.ling.dao.entity.Student;
 import com.ling.dao.mapper.StudentMapper;
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
