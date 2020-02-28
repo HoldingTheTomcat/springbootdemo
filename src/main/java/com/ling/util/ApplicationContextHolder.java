@@ -38,7 +38,7 @@ public class ApplicationContextHolder implements ApplicationContextAware, Dispos
     }
 
     /**
-     * 从静态变量 applicationContext 中获取 Bean，自动转型成所赋值对象的类型
+     * 从静态变量 applicationContext 中获取 Bean，自动转型成所赋值对象的类型，测试提交
      *
      * @param clazz
      * @param <T>
