@@ -5,18 +5,21 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.ling.common.entity.LoggerNameEnum;
 import com.ling.dao.entity.Student;
 import com.ling.dao.entity.StudentNew;
 import com.ling.dao.mapper.StudentNewMapper;
 import com.ling.manager.facade.UserManagerFacade;
 import com.ling.service.StudentService;
+import com.ling.util.LoggerUtils;
 import io.swagger.annotations.*;
-import jdk.nashorn.internal.objects.NativeUint8Array;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,14 +36,15 @@ import java.util.Map;
 @Api(tags = "student操作接口") //修饰整个类，描述 Controller 的作用
 public class SpringController {
 
+    Logger logger = LoggerUtils.Logger(LoggerNameEnum.COMMON_LOG);
 
     @RequestMapping("tohtml")
     public String validStudent(String name, Integer age) {
+        logger.info("平平常常2");
         return "index";
     }
-    
-    
-    private Logger logger2 = LoggerFactory.getLogger(getClass());
+
+
 
     @Autowired
     private StudentNewMapper studentNewMapper;
@@ -63,31 +67,31 @@ public class SpringController {
                 e.printStackTrace();
             }
         }
-        
+
         return studentList;
     }
-    
+
     @GetMapping("getStudentList")
     @ApiOperation("查询所有学生") //描述一个类的一个方法，或者说一个接口
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "studentid",value = "学生编号",dataType = "String",paramType = "query",required = true),
-            @ApiImplicitParam(name = "name",value = "学生姓名",dataType = "String",required = true)
+            @ApiImplicitParam(name = "studentid", value = "学生编号", dataType = "String", paramType = "query", required = true),
+            @ApiImplicitParam(name = "name", value = "学生姓名", dataType = "String", required = true)
     })
-    public List<Student> getStudentList(String studentid,String name ) {
+    public List<Student> getStudentList(String studentid, String name) {
         // RedisTemplate redisTemplate = redisCache2.getRedisTemplate();
         List<Student> studentList = studentService.getStudentList();
         return studentList;
     }
-    
+
     @PostMapping("updateStudent")
     @ApiOperation(value = "更新学生信息", notes = "只做更新")//描述一个类的一个方法，或者说一个接口
-    public void  updateStudent(@ApiParam(name = "学生对象", required = true) Student student){
-        
+    public void updateStudent(@ApiParam(name = "学生对象", required = true) Student student) {
+
     }
 
     @PostMapping("deleteStudent")
     @ApiOperation(value = "删除学生信息", notes = "注意id必传")//描述一个类的一个方法，或者说一个接口
-    public void deleteStudent(@ApiParam(name = "学生对象",value = "传入json格式",required = true) @RequestBody Student student) {
+    public void deleteStudent(@ApiParam(name = "学生对象", value = "传入json格式", required = true) @RequestBody Student student) {
 
     }
 
@@ -101,8 +105,9 @@ public class SpringController {
     public Student addStudent(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         Student student = new Student();
+
         String sessionId = session.getId();
-        
+
         student.setDogNameNew("lisi-aaa11");
         //master-增加
         //master-增加2
@@ -163,7 +168,7 @@ public class SpringController {
 
         // 在遇到未知属性的时候不抛出异常：原因: 如果json字符串中出现java对象中没有的属性，则在将json转换为java对象时会报错
         jackSonMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-       
+
         // 强制JSON 空字符串("")转换为null对象值:
         jackSonMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
