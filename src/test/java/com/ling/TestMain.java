@@ -55,7 +55,7 @@ public class TestMain {
         try {
             return ((Class<?>) obj.getClass().getField("TYPE").get(null)).isPrimitive();
         } catch (Exception e) {
-            System.out.println("异常");
+            System.out.println("异常，测试pull");
             return false;
         }
     }
