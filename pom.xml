@@ -34,7 +34,7 @@
     <dependencies>
         
         <!-- web相关 start -->
-        <!--使用springMVC和Spring的jar包，父工程已经指定版本了-->
+        <!--使用 springMVC和Spring的jar包，父工程已经指定版本了-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
